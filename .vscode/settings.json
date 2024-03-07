@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.dll": "bat",
+        "*.cpp": "cpp",
+        "*.json": "jsonc",
+        "user.h": "c"
+    }
+}
