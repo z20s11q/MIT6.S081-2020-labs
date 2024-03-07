@@ -1,16 +1,39 @@
-# MIT6.S081-2020-labs
-MIT6.S081实验官方纯净源代码，转载于MIT官方仓库git clone git://g.csail.mit.edu/xv6-labs-2020，由于GitHub上没有放出2020版本的MIT6.S081的实验源代码仓库，故在此转载一下，方便大家Fork，也方便我自己使用
+### 实验环境安装
 
-## 分支说明
+在wsl/虚拟机中运行docker
 
-- `main`分支：
+```sh
+docker pull calvinhaynes412/mit6.s081:v1.3.1
 
-  - 我搭建的一个Docker环境，集成了code-server（网页端Vscode），以达到开箱即用的效果，通过`Docker`的`Volumes`机制可通过`Docker`访问宿主机的文件，并可以修改和执行（相当于将宿主机的文件挂载在Docker的虚拟环境中），具体搭建&使用流程点[这里](https://zhuanlan.zhihu.com/p/449687883)，效果图如下：
+docker run -d calvinhaynes412/mit6.s081:v1.3.1 \
+-p 9022:22 \
+-p 9848:8848 \
+-v /mydata/mit6.s081:/mit6.s081 \
+--name mit6_s081_container 
 
-  ![image](https://xf233.oss-cn-hangzhou.aliyuncs.com/CalvinHaynesBlogImage/image.5l840ak5vw00.png)
+```
 
-  - 一些学习笔记
-  - 一些操作系统的资料
+映射卷是因为可以内外传输文件，不用其他传输方法
 
-- 其他分支：根据官方的项目一个个`clone`过来的，因为mit-pdos的github组织没有开源这个实验的环境，所以我建立这个github仓库方便大家直接fork成自己的项目并且通过github跟踪自己的实验过程，鼓励大家开源自己的学习成果，共同进步，共同学习！！！加油！！！
+网页端密码：mit6s081
+
+添加容器内/mit6.s081目录的权限，然后克隆仓库
+
+git clone https://github.com/z20s11q/MIT6.S081-2020-labs.git
+
+vscode左下角--附加到正在运行的容器--选择克隆的仓库地址
+
+改变vscode快捷键ctrl + p为ctrl + alt + p，因为在qemu内，ctrl+p可以列出当前运行的进程
+
+### 编写文件并测试
+
+在user目录编写.c文件，在项目根目录makefile文件中，添加$U/_filename，filename是编写的.c文件的文件名，不带后缀。
+
+然后make qemu后自动进入qemu中。
+
+测试命令：./grade-lab-util filename，filename是编写的.c文件的文件名
+
+测试所有并打分./grade-lab-util
+
+
 
